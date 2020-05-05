@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new ReadRSS().execute("https://vnexpress.net/rss/so-hoa.rss");
+        new ReadRSS().execute("https://vnexpress.net/rss/tin-moi-nhat.rss");
     }
     private class ReadRSS extends AsyncTask<String,Void, String>{
 
@@ -54,15 +54,14 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             XMLDOMParser parser = new XMLDOMParser();
             Document document = parser.getDocument(s);
-            NodeList nodeList = document.getElementsByTagName("item");
-
+//            NodeList nodeList = document.getElementsByTagName("title");
             String tieuDe ="";
-            for (int i= 0; i< nodeList.getLength();i++){
-                Element element = (Element) nodeList.item(i);
-                tieuDe += parser.getValue(element,"title")+"\n";
-            }
-
-            Toast.makeText(MainActivity.this,tieuDe,Toast.LENGTH_LONG).show();
+//            for (int i= 0; i< nodeList.getLength();i++){
+//                Element element = (Element) nodeList.item(i);
+//                tieuDe += parser.getValue(element,"title")+"\n";
+//            }
+//            Toast.makeText(MainActivity.this,tieuDe,Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this,document.getXmlVersion(),Toast.LENGTH_LONG).show();
         }
     }
 }
